@@ -8,10 +8,12 @@ calculadora.
 **********************************************************************/
 
 import java.util.*;
+import java.io.*;
 
 public class Vista 
 {
     //Propiedades
+    String texto;
     private Scanner scan;
     Scanner entrada = new Scanner(System.in);
 	
@@ -21,6 +23,7 @@ public class Vista
     public Vista()
     {
         scan = new Scanner(System.in);
+        texto = "";
     }
 
     public void bienvenida()
@@ -32,12 +35,33 @@ public class Vista
     {
         int op;
         String s = "\nQue desea hacer?\n" +
-                   "1. Empezar programa\n" +
+                   "1. Realizar operacion\n" +
                    "2. Salir\n";
         System.out.println(s);
         op = scan.nextInt();
 
         return op;
+    }
+    
+    public String LeerArchivo(String direccion)
+    {
+        try
+        {
+            BufferedReader bf = new BufferedReader(new FileReader(direccion));
+            String temp = "";
+            String bfRead;
+            while((bfRead = bf.readLine()) != null)
+            {
+                temp = temp + bfRead;
+            }
+            
+            texto = temp;
+        }
+        catch(Exception e)
+        {
+            System.err.println("No se encontro el archivo");
+        }
+        return texto;
     }
 
     public void opcionInvalida()
