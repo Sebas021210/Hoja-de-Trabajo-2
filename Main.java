@@ -13,13 +13,11 @@ import java.util.Scanner;
 public class Main 
 {
     static String line;
+    
     public static void main(String[] args) throws Exception
     {
         Vista vista = new Vista();
         Pila pila = new Pila();
-        File file = new File("datos.txt");
-        Scanner scan = new Scanner(file);
-        
         vista.bienvenida();
         int opcion = 0;
 
@@ -29,11 +27,7 @@ public class Main
 
             if (opcion == 1)
             {
-                //Empezar programa
-                while(scan.hasNextLine())
-                {
-                    line = scan.nextLine();
-                }
+                line = vista.LeerArchivo("");
                 pila.Evaluate(line);
                 System.out.println("El resultado es: " + pila.resultado);
             }
